@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stark Fitness - Transforme seu Corpo e Mente</title>
+    
+    <!-- Tailwind CSS -->
+    <link rel="stylesheet" href="../src/output.css">
+    
+    <!-- Google Fonts: Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    
+    <!-- Favicon (Exemplo) -->
+    <link rel="icon" href="https://placehold.co/32x32/00C9FF/0A0A0A?text=SF" type="image/png">
+
+    <style>
+        /* Estilos customizados e overrides do Tailwind */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #0A0A0A;
+            color: #E0E0E0;
+        }
+
+        /* Efeito de gradiente no texto */
+        .gradient-text {
+            background: linear-gradient(90deg, #00C9FF, #92FE9D);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Efeito de brilho no botão */
+        .cta-button {
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            transition: color 0.4s ease-in-out;
+        }
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, #00C9FF, transparent);
+            transition: left 0.6s ease-in-out;
+            z-index: -1;
+        }
+        .cta-button:hover::before {
+            left: 100%;
+        }
+        .cta-button:hover {
+            color: #0A0A0A;
+            background-color: #00C9FF;
+        }
+
+        /* Animações de scroll */
+        .reveal {
+            position: relative;
+            opacity: 0;
+            transform: translateY(100px);
+            transition: all 1s ease;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Estilo para o vídeo de fundo */
+        #hero-video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            z-index: -1;
+            transform: translateX(-50%) translateY(-50%);
+            object-fit: cover;
+        }
+        
+        /* Overlay escuro sobre o vídeo */
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(10, 10, 10, 0.7);
+            z-index: 0;
+        }
+    </style>
+</head>
+<body class="overflow-x-hidden">
+
+    <!-- Header -->
+    <header class="fixed top-0 left-0 w-full bg-black/30 backdrop-blur-md z-50 transition-all duration-300">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-3xl font-black gradient-text">STARK</a>
+            <nav class="hidden md:flex items-center space-x-8">
+                <a href="#services" class="text-gray-300 hover:text-white transition">Serviços</a>
+                <a href="#plans" class="text-gray-300 hover:text-white transition">Planos</a>
+                <a href="#testimonials" class="text-gray-300 hover:text-white transition">Depoimentos</a>
+                <a href="#contact" class="text-gray-300 hover:text-white transition">Contato</a>
+            </nav>
+            <a href="#plans" class="hidden md:block bg-transparent border-2 border-[#00C9FF] text-[#00C9FF] font-bold py-2 px-6 rounded-lg cta-button">
+                COMECE AGORA
+            </a>
+            <button id="mobile-menu-button" class="md:hidden text-white text-2xl">
+                &#9776;
+            </button>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-gray-900/90">
+            <a href="#services" class="block text-center py-3 px-4 text-sm hover:bg-[#00C9FF] hover:text-black transition">Serviços</a>
+            <a href="#plans" class="block text-center py-3 px-4 text-sm hover:bg-[#00C9FF] hover:text-black transition">Planos</a>
+            <a href="#testimonials" class="block text-center py-3 px-4 text-sm hover:bg-[#00C9FF] hover:text-black transition">Depoimentos</a>
+            <a href="#contact" class="block text-center py-3 px-4 text-sm hover:bg-[#00C9FF] hover:text-black transition">Contato</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative h-screen flex items-center justify-center text-center overflow-hidden">
+        <video autoplay muted loop id="hero-video">
+            <!-- Use um vídeo seu ou um de um banco de vídeos. Ex: Pexels, Coverr -->
+            <source src="https://assets.mixkit.co/videos/preview/mixkit-man-lifting-weights-in-the-gym-200-large.mp4" type="video/mp4">
+            Seu navegador não suporta a tag de vídeo.
+        </video>
+        <div class="video-overlay"></div>
+        <div class="relative z-10 px-6">
+            <h1 class="text-5xl md:text-7xl lg:text-8xl font-black uppercase text-white tracking-wider reveal">
+                Construa sua <span class="gradient-text">Melhor Versão</span>
+            </h1>
+            <p class="mt-6 text-lg md:text-xl max-w-3xl mx-auto text-gray-300 reveal" style="transition-delay: 0.2s;">
+                Não é apenas sobre levantar pesos. É sobre levantar a si mesmo. Junte-se à Stark Fitness e redefina seus limites.
+            </p>
+            <div class="mt-10 reveal" style="transition-delay: 0.4s;">
+                <a href="#plans" class="bg-gradient-to-r from-[#00C9FF] to-[#92FE9D] text-black font-bold py-4 px-10 rounded-lg text-lg uppercase hover:scale-105 transition-transform duration-300">
+                    Ver Planos
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-20 bg-gray-900">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-4xl md:text-5xl font-black uppercase">O Que <span class="gradient-text">Oferecemos</span></h2>
+                <p class="mt-4 text-gray-400 max-w-2xl mx-auto">Estrutura de ponta e os melhores profissionais para você superar qualquer desafio.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Service Card 1 -->
+                <div class="bg-gray-800 p-8 rounded-xl border border-gray-700 hover:border-[#00C9FF] hover:scale-105 transition-all duration-300 reveal">
+                    <div class="text-4xl gradient-text mb-4">🏋️</div>
+                    <h3 class="text-2xl font-bold mb-3 text-white">Musculação</h3>
+                    <p class="text-gray-400">Equipamentos de última geração para você treinar pesado e com segurança, maximizando seus ganhos.</p>
+                </div>
+                <!-- Service Card 2 -->
+                <div class="bg-gray-800 p-8 rounded-xl border border-gray-700 hover:border-[#00C9FF] hover:scale-105 transition-all duration-300 reveal" style="transition-delay: 0.2s;">
+                    <div class="text-4xl gradient-text mb-4">🤸</div>
+                    <h3 class="text-2xl font-bold mb-3 text-white">Aulas Coletivas</h3>
+                    <p class="text-gray-400">De Spinning a Zumba, aulas energéticas para queimar calorias, se divertir e fazer novos amigos.</p>
+                </div>
+                <!-- Service Card 3 -->
+                <div class="bg-gray-800 p-8 rounded-xl border border-gray-700 hover:border-[#00C9FF] hover:scale-105 transition-all duration-300 reveal" style="transition-delay: 0.4s;">
+                    <div class="text-4xl gradient-text mb-4">🧘</div>
+                    <h3 class="text-2xl font-bold mb-3 text-white">Yoga & Pilates</h3>
+                    <p class="text-gray-400">Encontre seu equilíbrio, melhore a flexibilidade e fortaleça seu core em um ambiente tranquilo e inspirador.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Plans Section -->
+    <section id="plans" class="py-20 bg-black">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-4xl md:text-5xl font-black uppercase">Nossos <span class="gradient-text">Planos</span></h2>
+                <p class="mt-4 text-gray-400 max-w-2xl mx-auto">Escolha o plano que se encaixa na sua rotina e comece sua transformação hoje mesmo.</p>
+            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                <!-- Plan Card 1 -->
+                <div class="bg-gray-900 p-8 rounded-xl border-2 border-gray-700 flex flex-col reveal">
+                    <h3 class="text-2xl font-bold text-center text-white">Plano Stark</h3>
+                    <p class="text-center mt-2 gradient-text font-semibold">Mensal</p>
+                    <div class="text-5xl font-black text-center my-6 text-white">R$129<span class="text-lg font-medium">/mês</span></div>
+                    <ul class="space-y-4 text-gray-300 flex-grow">
+                        <li>✅ Acesso a todas as áreas de musculação</li>
+                        <li>✅ Aulas coletivas (exceto Yoga/Pilates)</li>
+                        <li>✅ Sem taxa de matrícula</li>
+                    </ul>
+                    <a href="#contact" class="mt-8 w-full text-center bg-transparent border-2 border-[#00C9FF] text-[#00C9FF] font-bold py-3 px-6 rounded-lg cta-button">
+                        Quero Esse
+                    </a>
+                </div>
+                <!-- Plan Card 2 (Featured) -->
+                <div class="bg-gray-900 p-8 rounded-xl border-2 border-[#00C9FF] flex flex-col relative overflow-hidden transform lg:scale-110 reveal" style="transition-delay: 0.2s;">
+                    <div class="absolute top-0 right-0 bg-gradient-to-r from-[#00C9FF] to-[#92FE9D] text-black text-xs font-bold uppercase px-4 py-1 transform translate-x-1/4 -translate-y-1/4 rotate-45">Popular</div>
+                    <h3 class="text-2xl font-bold text-center text-white">Plano Titan</h3>
+                    <p class="text-center mt-2 gradient-text font-semibold">Semestral</p>
+                    <div class="text-5xl font-black text-center my-6 text-white">R$109<span class="text-lg font-medium">/mês</span></div>
+                    <ul class="space-y-4 text-gray-300 flex-grow">
+                        <li>✅ Acesso a todas as áreas de musculação</li>
+                        <li>✅ Todas as aulas coletivas</li>
+                        <li>✅ Acesso a Yoga & Pilates</li>
+                        <li>✅ 1 Avaliação Física Grátis</li>
+                    </ul>
+                    <a href="#contact" class="mt-8 w-full text-center bg-gradient-to-r from-[#00C9FF] to-[#92FE9D] text-black font-bold py-3 px-6 rounded-lg hover:scale-105 transition-transform duration-300">
+                        Quero Esse
+                    </a>
+                </div>
+                <!-- Plan Card 3 -->
+                <div class="bg-gray-900 p-8 rounded-xl border-2 border-gray-700 flex flex-col reveal" style="transition-delay: 0.4s;">
+                    <h3 class="text-2xl font-bold text-center text-white">Plano Legend</h3>
+                     <p class="text-center mt-2 gradient-text font-semibold">Anual</p>
+                    <div class="text-5xl font-black text-center my-6 text-white">R$89<span class="text-lg font-medium">/mês</span></div>
+                    <ul class="space-y-4 text-gray-300 flex-grow">
+                        <li>✅ Todos os benefícios do plano Titan</li>
+                        <li>✅ Leve um amigo para treinar 4x/mês</li>
+                        <li>✅ Acompanhamento nutricional</li>
+                    </ul>
+                    <a href="#contact" class="mt-8 w-full text-center bg-transparent border-2 border-[#00C9FF] text-[#00C9FF] font-bold py-3 px-6 rounded-lg cta-button">
+                        Quero Esse
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="py-20 bg-gray-900">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-4xl md:text-5xl font-black uppercase">O Que Nossos <span class="gradient-text">Membros Dizem</span></h2>
+            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="bg-gray-800 p-8 rounded-xl border border-gray-700 reveal">
+                    <p class="text-gray-300 italic">"A melhor academia que já treinei! A estrutura é incrível e os professores são muito atenciosos. Em 6 meses, alcancei resultados que não consegui em anos."</p>
+                    <div class="flex items-center mt-6">
+                        <img src="https://placehold.co/50x50/92FE9D/0A0A0A?text=JS" alt="Foto de João Silva" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <p class="font-bold text-white">João Silva</p>
+                            <p class="text-sm text-gray-400">Membro desde 2022</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Testimonial 2 -->
+                <div class="bg-gray-800 p-8 rounded-xl border border-gray-700 reveal" style="transition-delay: 0.2s;">
+                    <p class="text-gray-300 italic">"As aulas de Yoga mudaram minha vida. O ambiente é perfeito para relaxar e se reconectar. Recomendo de olhos fechados!"</p>
+                    <div class="flex items-center mt-6">
+                        <img src="https://placehold.co/50x50/00C9FF/0A0A0A?text=MA" alt="Foto de Maria Andrade" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <p class="font-bold text-white">Maria Andrade</p>
+                            <p class="text-sm text-gray-400">Membro desde 2023</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Testimonial 3 -->
+                <div class="bg-gray-800 p-8 rounded-xl border border-gray-700 reveal" style="transition-delay: 0.4s;">
+                    <p class="text-gray-300 italic">"Finalmente encontrei um lugar que me motiva a treinar todos os dias. A energia da Stark Fitness é contagiante. Vale cada centavo!"</p>
+                    <div class="flex items-center mt-6">
+                        <img src="https://placehold.co/50x50/FFFFFF/0A0A0A?text=CP" alt="Foto de Carlos Pereira" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <p class="font-bold text-white">Carlos Pereira</p>
+                            <p class="text-sm text-gray-400">Membro desde 2021</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-black">
+        <div class="container mx-auto px-6">
+             <div class="text-center mb-16 reveal">
+                <h2 class="text-4xl md:text-5xl font-black uppercase">Faça Parte da <span class="gradient-text">Nação Stark</span></h2>
+                <p class="mt-4 text-gray-400 max-w-2xl mx-auto">Deixe seu contato e agende uma aula experimental gratuita. Estamos esperando por você.</p>
+            </div>
+            <form action="#" method="POST" class="max-w-xl mx-auto reveal">
+                <div class="mb-6">
+                    <label for="name" class="block text-gray-300 mb-2">Nome</label>
+                    <input type="text" id="name" name="name" class="w-full bg-gray-800 border border-gray-700 rounded-lg py-3 px-4 text-white focus:outline-none focus:border-[#00C9FF] transition">
+                </div>
+                <div class="mb-6">
+                    <label for="email" class="block text-gray-300 mb-2">Email</label>
+                    <input type="email" id="email" name="email" class="w-full bg-gray-800 border border-gray-700 rounded-lg py-3 px-4 text-white focus:outline-none focus:border-[#00C9FF] transition">
+                </div>
+                <div class="mb-8">
+                    <label for="message" class="block text-gray-300 mb-2">Mensagem (Opcional)</label>
+                    <textarea id="message" name="message" rows="4" class="w-full bg-gray-800 border border-gray-700 rounded-lg py-3 px-4 text-white focus:outline-none focus:border-[#00C9FF] transition"></textarea>
+                </div>
+                <div class="text-center">
+                     <button type="submit" class="w-full bg-gradient-to-r from-[#00C9FF] to-[#92FE9D] text-black font-bold py-4 px-10 rounded-lg text-lg uppercase hover:scale-105 transition-transform duration-300">
+                        Enviar e Agendar Aula
+                    </button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 border-t border-gray-800">
+        <div class="container mx-auto px-6 py-8 text-center text-gray-400">
+            <p>&copy; 2025 Stark Fitness. Todos os direitos reservados.</p>
+            <p class="text-sm mt-2">Feito com 💪 por um entusiasta do fitness.</p>
+            <div class="flex justify-center space-x-6 mt-4">
+                <a href="#" class="hover:text-white transition">Instagram</a>
+                <a href="#" class="hover:text-white transition">Facebook</a>
+                <a href="#" class="hover:text-white transition">WhatsApp</a>
+            </div>
+        </div>
+    </footer>
+
+
+    <script>
+        // Lógica para o menu mobile
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Fechar menu mobile ao clicar em um link
+        const mobileMenuLinks = mobileMenu.getElementsByTagName('a');
+        for (let link of mobileMenuLinks) {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        }
+
+        // Lógica para animações de scroll
+        const revealElements = document.querySelectorAll('.reveal');
+
+        const revealOnScroll = () => {
+            const windowHeight = window.innerHeight;
+            revealElements.forEach(el => {
+                const elementTop = el.getBoundingClientRect().top;
+                const elementVisible = 150; // Distância para ativar a animação
+
+                if (elementTop < windowHeight - elementVisible) {
+                    el.classList.add('active');
+                } else {
+                    // Opcional: remover a classe para re-animar ao rolar para cima
+                    // el.classList.remove('active'); 
+                }
+            });
+        };
+
+        window.addEventListener('scroll', revealOnScroll);
+        // Ativar a verificação no carregamento da página também
+        revealOnScroll();
+    </script>
+
+</body>
+</html>

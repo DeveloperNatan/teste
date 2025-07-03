@@ -1,0 +1,8 @@
+@import "tailwindcss";
+@import '/src/fonts.css';
+
+@font-face {
+    font-family: "font-mustang";
+    src: url("/src/Fonts/Mustang.ttf");
+    font-weight: normal;
+}
